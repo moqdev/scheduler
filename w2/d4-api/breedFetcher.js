@@ -14,6 +14,3 @@ const request = require("request")
 const example = 'example string';
 console.log(example.length); //out 14
 
-//accessing-array-values.js
-let food = ['apple', 'pizza', 'pear']
-console.log(food[1]);
