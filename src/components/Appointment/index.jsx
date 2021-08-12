@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 //local imports
-import "./styles.scss";
+
 import Header from "./header";
 import Empty from "./Empty";
 import Show from './show'

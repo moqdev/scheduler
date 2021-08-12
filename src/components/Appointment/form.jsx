@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../Button";
-import InterviewerList from "../InterviewerList.jsx";
+import InterviewerList from "../interviewerList";
 //Setting default state
 //evaluates to props.name if it is truthy
 export default function Form(props) {
