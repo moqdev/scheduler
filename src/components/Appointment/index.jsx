@@ -79,22 +79,22 @@ const { mode, transition, back } = useVisualMode(
           value={props.value}
           interviewers={props.interviewers}
           onSave={save}
-          onCancel={(e) => back()}
+          onCancel={back}
           onEdit={props.onEdit}
           onDelete={() => transition(CONFIRM)}
         />
       )}
       {mode === SAVING && <Status message="Saving" />}
       {mode === ERROR_SAVE && (
-        <Error message="Could not save appointment" onClose={(e) => back()} />
+        <Error message="Could not save appointment" onClose={back} />
       )}
       {mode === DELETING && <Status message="Deleting" />}
       {mode === ERROR_DELETE && (
-        <Error message="Could not delete appointment" onClose={(e) => back()} />
+        <Error message="Could not delete appointment" onClose={back} />
       )}
       {mode === CONFIRM && (
         <Confirm
-          onCancel={(e) => back()}
+          onCancel={back}
           onConfirm={remove}
           message="Are you sure you would like to delete?"
         />
