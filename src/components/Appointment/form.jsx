@@ -13,14 +13,19 @@ export default function Form(props) {
       setError("student name cannot be blank");
       return;
     }
+     if (!interviewer) {
+      setError("interviewer must be selected");
+      return;
+    }
     setError("");
     save();
   }
+
   const reset = function () {
     setName("");
     setInterviewer(null);
   };
-
+  
   const cancel = function () {
     reset();
     props.onCancel();
