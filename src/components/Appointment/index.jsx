@@ -8,7 +8,9 @@ import Form from "./form";
 import Status from "./status";
 import Confirm from "./confirm";
 import Error from "./Error";
-import "./styles.scss";
+
+import "components/Appointment/styles.scss";
+
 import useVisualMode from "../../hooks/useVisualMode";
 
 export default function Appointment(props) {
@@ -28,31 +30,7 @@ const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
-  useEffect(() => {
-    if (props.interview && mode === EMPTY) {
-      transition(SHOW);
-    }
-
-    if (!props.interview && mode === SHOW) {
-      transition(EMPTY);
-    }
-  }, [mode, transition, props.interview]);
-  //* Save the interview
-  function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer,
-    };
-
-    if (name && interviewer) {
-      transition(SAVING);
-      props
-        .bookInterview(props.id, interview)
-        .then(() => transition(SHOW))
-        .catch(() => transition(ERROR_SAVE, true));
-    }
-  }
-  //* delete the interview
+//* delete the interview
   function remove() {
     transition(DELETING, true);
     props
@@ -60,6 +38,33 @@ const { mode, transition, back } = useVisualMode(
       .then(() => transition(EMPTY))
       .catch(() => transition(ERROR_DELETE, true));
   }
+
+  // useEffect(() => {
+  //   if (props.interview && mode === EMPTY) {
+  //     transition(SHOW);
+  //   }
+
+  //   if (!props.interview && mode === SHOW) {
+  //     transition(EMPTY);
+  //   }
+  // }, [mode, transition, props.interview]);
+
+  //* Save the interview
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer,
+    };
+
+
+      transition(SAVING);
+      props
+        .bookInterview(props.id, interview)
+        .then(() => transition(SHOW))
+        .catch(() => transition(ERROR_SAVE, true));
+    
+  }
+  
 
   return (
     <article className="appointment" data-testid="appointment">
@@ -75,13 +80,9 @@ const { mode, transition, back } = useVisualMode(
       )}
       {mode === CREATE && (
         <Form
-          name={props.name}
-          value={props.value}
           interviewers={props.interviewers}
           onSave={save}
           onCancel={back}
-          onEdit={props.onEdit}
-          onDelete={() => transition(CONFIRM)}
         />
       )}
       {mode === SAVING && <Status message="Saving" />}
@@ -105,7 +106,7 @@ const { mode, transition, back } = useVisualMode(
           onSave={save}
           onCancel={back}
           name={props.interview.student}
-          value={props.interview.interviewer.id}
+          interviewer={props.interview.interviewer.id}
         />
       )}
     </article>

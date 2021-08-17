@@ -35,7 +35,7 @@ const matchIds = (appointments, ids) => {
 
 export function getInterviewersForDay(state, day) {
   let interviewersArr = [];
-  state.days.map((dayObj) => {
+  state.days.forEach((dayObj) => {
     if (dayObj.name === day) {
       dayObj.interviewers.forEach((interviewerId) =>
         interviewersArr.push(interviewerId)

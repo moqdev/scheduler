@@ -5,7 +5,7 @@ import InterviewerList from "../interviewerList";
 //evaluates to props.name if it is truthy
 export default function Form(props) {
   const [name, setName] = useState(props.name || "");
-  const [interviewer, setInterviewer] = useState(props.value || null);
+  const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
   function validate() {
@@ -42,7 +42,7 @@ export default function Form(props) {
              /*
           This must be a controlled component
         */
-            onChange={(event) => setName(event.target.value)}
+            onChange={event => setName(event.target.value)}
             value={name}
             data-testid="student-name-input"
           />

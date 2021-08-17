@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import InterviewerListItem from "./interviewerListItem";
-import "./interviewerListItem.scss";
+import "components/interviewerList.scss";
 
 function interviewerList(props) {
   const Interviewers =
@@ -12,7 +12,7 @@ function interviewerList(props) {
           key={data.id}
           name={data.name}
           avatar={data.avatar}
-          selected={data.id === props.value}
+          selected={data.id === props.interviewer}
           setInterviewer={() => props.onChange(data.id)}
         />
       );
