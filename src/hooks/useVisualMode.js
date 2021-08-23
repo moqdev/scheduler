@@ -7,22 +7,20 @@ const useVisualMode = (initial) => {
   const transition = (newMode, replace = false) => {
     if (!replace) {
       setMode(newMode);
-      setHistory(history=>[...history,newMode]);
+      setHistory(prev=>[...prev, newMode]);
     } else {
       setMode(newMode);
+      setHistory(prev=>[ ...prev.slice(0, prev.length -1), newMode])
     }
+   
   };
 
   const back = () => {
-    if (history.length > 1) {
-      setHistory(history=>history.slice(0,history.length - 1));
-      setMode(history[history.length - 1]);
-    
-    }
-    else {
-      setHistory(initial)
-      setMode(initial)
-    }
+    if (history.length < 2) return;
+
+    setMode(history[history.length - 2]);
+    setHistory(history=>history.slice(0,history.length - 1));
+ 
   };
 
   return { mode, transition, back };

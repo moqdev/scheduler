@@ -50,7 +50,10 @@ const parsedAppointments = dailyAppointments.map((appointment) => {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">{parsedAppointments}</section>
+      <section className="schedule">
+        {parsedAppointments}
+        <Appointment key="last" time="5pm"/>
+      </section>
     </main>
   );
 }
